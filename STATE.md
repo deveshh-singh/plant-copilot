@@ -5,8 +5,8 @@ STATE, NOT STORY: this file says what is true now, not how we got here. Every
 section is REPLACED on update, never appended to. The story goes in docs/history/.
 Rules for each section are in the comments. /wrap keeps it current; /tidy shrinks it. -->
 
-**Last updated:** 2026-09-29 — Planned M0 + M1: cards T-001..T-005 ready, decisions
-D-006..D-010 (`docs/history/m0-setup.md`). Still no code.
+**Last updated:** 2026-09-30 — M0 + M1 planned (T-001..T-005 ready); learning profile and glossary
+started in `docs/learn/` (`docs/history/m0-setup.md`). Still no code.
 
 ## Now
 <!-- ≤ 8 bullets. The milestone, what works, what is half-done. -->
