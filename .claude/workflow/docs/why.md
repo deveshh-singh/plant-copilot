@@ -16,6 +16,7 @@ ends by writing down everything the next one needs.
 | Start | `STATE.md`, `work/BOARD.md` | read once at session start | 10 + 6 KB |
 | Task | one card, its report, the files it names | the session doing that task | 8 + 5 KB |
 | On demand | `docs/decisions.md`, `docs/history/`, `docs/reference/`, `work/plans/` | only when pointed to, by grep | none |
+| Owner's | `docs/learn/` (PROFILE, how-it-works, glossary, lessons) | only by `/learn`, `/wrap` and the skills that write lessons | 4 + 10 KB |
 
 A fresh session therefore starts on about **6–8k tokens** of project context.
 Skills cost almost nothing until used: only their one-line description is loaded,
@@ -43,6 +44,23 @@ not in `CLAUDE.md`.
 The builder session has read its own reasoning and tends to agree with it. A fresh
 session with only the card, the report and the diff reviews the way an outsider
 would. It is also cheaper, because it does not carry the build's context.
+
+## Why learning is built in
+The owners are builders, not programmers. Without help, a project can be finished
+while its owner still can't explain it, run it, change it or fix it, and is stuck
+without Claude. So teaching is part of the loop, not a separate course:
+- **At the moment of use, about their own code.** A concept sticks when it is
+  explained right after it was needed, with this project's files, not a textbook.
+- **Doing beats reading.** Explaining it back, predicting before running, and
+  making a small change yourself is how knowledge sticks. Hence three levels per
+  concept (met → explained back → did it) and a "try it yourself" in every lesson.
+- **Spaced review** (2 → 7 → 21 days) because a thing seen once is forgotten in a week.
+- **Never in the way of shipping.** Builds stay terse; questions happen only in
+  `/learn`. The owner reads two short blocks at `/wrap`: *What we did* (the change
+  and its impact, at every level) and *What you learned* (the idea behind it).
+- **Measured, not assumed.** The graduation checklist (`/learn check`) says when
+  the owner really knows the project: 10 things they can *show*, not be told.
+- **Free for the context.** `docs/learn/` is never read at session start.
 
 ## Using the usage window well
 - **Model per session type**: the strongest model (`/model`) for planning, hard

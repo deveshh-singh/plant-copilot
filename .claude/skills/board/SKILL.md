@@ -16,7 +16,8 @@ description: Regenerates the task board from the card headers and opens the visu
    `work/BOARD.md`, which is small.
 3. Reply in at most five lines: counts (in progress / in review / ready / backlog
    / triage / done), open bugs by priority, any warning (WIP over the limit, a P0,
-   stale triage, blocked items), and the next prompt to run.
+   stale triage, blocked items), and the next prompt to run (`/assign T-NNN` for a
+   build card when `work/builders.conf` exists).
 
 For a specific question ("which bugs are open?", "what's in milestone M2?"), answer
 from the card headers without opening the cards:

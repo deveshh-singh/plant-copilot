@@ -27,7 +27,10 @@ skills) and the starting files (seed). The master's path is in
 - What the project is and who it is for, if not obvious.
 - Standing rules: things the owner never wants re-litigated ("no new
   dependencies", "dev before prod", "no PII leaves the workspace").
-- Is a second builder used (Codex, or a second Claude session)?
+- Is a second builder used (Codex, or a second Claude account)? If a second Claude
+  account: which shell alias opens the **manager** and which the **builder**, and
+  the builder's `CLAUDE_CONFIG_DIR` (look in `~/.zshrc` for the aliases and offer
+  what you find).
 - No GitHub remote? Offer to create one:
   `gh repo create <name> --private --source=. --push`.
 - Offer your inferred commands (test / lint / build-or-deploy / smoke check) for
@@ -55,6 +58,12 @@ skills) and the starting files (seed). The master's path is in
 - **Codex used:** `ln -sf CLAUDE.md AGENTS.md`, and add under the `@` line:
   "Codex: also read `.claude/workflow/RULES.md` (Codex does not follow @ imports)."
   The loop is in `.claude/workflow/docs/two-builders.md`.
+- **Second Claude account:** copy `.claude/workflow/templates/builders.conf` to
+  `work/builders.conf` and fill it in. Record the mapping as a `D-NNN` ("manager =
+  `<alias>` on `main`; builder = `<alias>`, started with `cbuild T-NNN`") with a
+  "Must not undo" pointer in STATE. If `~/.zshrc` has no `cbuild` function yet,
+  **ask first** (it is the owner's file), then append the one-line function from
+  `.claude/workflow/docs/two-builders.md` and tell them to open a new terminal tab.
 - **Never edit files under `.claude/workflow/` or the workflow skills.** They are
   replaced by updates. Project-specific text goes in CLAUDE.md.
 

@@ -49,6 +49,11 @@ on the branch, and end with the Clear context block: `/build T-NNN` resumes.
    write `docs/learn/lessons/T-NNN.md` from `.claude/workflow/templates/learn/lesson.md`,
    ≤ 1 page, using the card's `concepts:` and the real code.
 3. Card header → `status: in-review`; `python3 .claude/workflow/board.py`; commit on the branch.
-4. Small, low-risk card (a one-file fix): merge now and `/wrap`. Otherwise
+4. **Builder session** (`echo $CLAUDE_WORKFLOW_ROLE` prints `builder`: started by
+   `cbuild` or `/assign`): never merge, and skip `/wrap` (STATE, history and merges
+   are the manager's). Run `bash .claude/workflow/assign.sh done T-NNN` to notify the
+   manager's pane, then end with: "Ready for review: `/review-work T-NNN` in the
+   manager." Stop here.
+5. Small, low-risk card (a one-file fix): merge now and `/wrap`. Otherwise
    `/wrap` with next prompt `/review-work T-NNN`. A fresh session reviews
    better than the one that wrote the code.

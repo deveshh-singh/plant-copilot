@@ -221,7 +221,16 @@ TEMPLATE = r"""<!doctype html>
 *{box-sizing:border-box}body{margin:0;background:var(--bg);color:var(--ink);font:14px/1.45 -apple-system,BlinkMacSystemFont,"Segoe UI",Inter,sans-serif}
 header{padding:16px 20px 8px;display:flex;flex-wrap:wrap;gap:12px 24px;align-items:baseline}
 h1{font-size:18px;margin:0}.sub{color:var(--mute);font-size:12px}
-.stats{display:flex;flex-wrap:wrap;gap:10px;padding:0 20px 8px}
+.top{display:flex;flex-wrap:wrap;gap:12px;padding:0 20px 8px;align-items:flex-start}
+.gauge{background:var(--panel);border:1px solid var(--line);border-radius:14px;padding:12px 18px;display:flex;gap:16px;align-items:center;min-width:280px}
+.gauge svg{width:124px;height:124px;flex:none}.gauge circle{fill:none;stroke-width:11;stroke-linecap:round}
+.gauge .trk{stroke:var(--line)}.gauge .fly{stroke:var(--gc);opacity:.25}.gauge .arc{stroke:var(--gc)}
+.gauge .fly,.gauge .arc{transition:stroke-dashoffset 1.1s cubic-bezier(.22,1,.36,1),stroke .4s}
+.gauge .pct{font-size:28px;font-weight:700;fill:var(--ink)}.gauge .of{font-size:11px;fill:var(--mute)}
+.gauge .scope{font-size:11px;text-transform:uppercase;letter-spacing:.06em;color:var(--mute)}
+.gauge .say{font-size:17px;font-weight:700;margin:2px 0 4px;color:var(--gc)}.gauge .note{font-size:12px;color:var(--mute);max-width:230px}
+@media (prefers-reduced-motion:reduce){.gauge .fly,.gauge .arc{transition:none}}
+.stats{display:flex;flex-wrap:wrap;gap:10px;align-content:flex-start;flex:1}
 .stat{background:var(--panel);border:1px solid var(--line);border-radius:10px;padding:8px 12px;min-width:110px}
 .stat b{display:block;font-size:20px}.stat span{color:var(--mute);font-size:12px}
 .spark{display:flex;align-items:flex-end;gap:3px;height:34px;margin-top:4px}.spark i{width:10px;background:var(--feature);border-radius:2px 2px 0 0;opacity:.8}
@@ -245,7 +254,11 @@ h1{font-size:18px;margin:0}.sub{color:var(--mute);font-size:12px}
 @media (max-width:700px){.cols{grid-template-columns:repeat(6,82vw)}}
 </style></head><body>
 <header><h1>__TITLE__</h1><span class="sub" id="gen"></span></header>
-<div class="stats" id="stats"></div><div id="warns"></div>
+<div class="top"><div class="gauge" id="gauge" role="img">
+<svg viewBox="0 0 124 124"><g transform="rotate(-90 62 62)"><circle class="trk" cx="62" cy="62" r="52"/><circle class="fly" cx="62" cy="62" r="52" style="stroke-dasharray:327;stroke-dashoffset:327"/><circle class="arc" cx="62" cy="62" r="52" style="stroke-dasharray:327;stroke-dashoffset:327"/></g>
+<text class="pct" x="62" y="64" text-anchor="middle"></text><text class="of" x="62" y="82" text-anchor="middle"></text></svg>
+<div><div class="scope"></div><div class="say"></div><div class="note"></div></div></div>
+<div class="stats" id="stats"></div></div><div id="warns"></div>
 <div class="ms" id="ms"></div>
 <div class="bar"><input id="q" placeholder="Search title or T-NNN"><select id="type"><option value="">All types</option></select>
 <select id="pri"><option value="">All priorities</option></select><select id="mile"><option value="">All milestones</option></select>
@@ -279,6 +292,25 @@ function card(d){
  <div class="t">${esc(d.title)}</div>
  <div class="row">${d.milestone?`<span>${esc(d.milestone)}</span>`:""}<span>${age}</span>${d.blocked_by?`<span class="blk">by ${esc(d.blocked_by)}</span>`:""}</div>
  ${L?`<div class="row links">${L}</div>`:""}</div>`}
+const TIERS=[[100,"Ready to launch 🚀","var(--ok)"],[90,"Final stretch","var(--ok)"],[75,"Almost there","var(--ok)"],[50,"Past halfway","var(--feature)"],
+ [25,"Building momentum","var(--feature)"],[1,"Warming up","var(--feature)"],[0,"Just getting started","var(--mute)"]];
+function gauge(){
+ const m=$("#mile").value,xs=D.filter(d=>d.status!=="dropped"&&(!m||d.milestone===m));
+ const n=xs.length,done=xs.filter(d=>d.status==="done").length,fly=xs.filter(d=>["in-progress","in-review"].includes(d.status)).length;
+ const blocked=xs.filter(d=>d.status==="blocked").length,hot=xs.filter(d=>d.status!=="done"&&d.type==="bug"&&["P0","P1"].includes(d.priority)).length;
+ const pct=n?Math.floor(100*done/n):0,[,say,col]=n?TIERS.find(([t])=>pct>=t):[0,"No cards yet","var(--mute)"];
+ const g=$("#gauge"),C=2*Math.PI*52,dash=(el,f)=>{el.style.strokeDasharray=C;el.style.strokeDashoffset=C*(1-f)};
+ g.style.setProperty("--gc",col);
+ dash(g.querySelector(".arc"),n?done/n:0);dash(g.querySelector(".fly"),n?(done+fly)/n:0);
+ g.querySelector(".pct").textContent=pct+"%";g.querySelector(".of").textContent=`${done} / ${n} done`;
+ g.querySelector(".scope").textContent=m?"Milestone · "+m:"Project";g.querySelector(".say").textContent=say;
+ const left=n-done,parts=[];
+ if(hot)parts.push(`${hot} P0/P1 bug${hot>1?"s":""} to fix${pct>=75?" before launch":""}`);
+ if(blocked)parts.push(`${blocked} blocked`);
+ if(fly)parts.push(`${fly} in flight`);
+ if(left&&!hot)parts.push(`${left} to go`);
+ g.querySelector(".note").textContent=n?(left?parts.join(" · "):"Every card is done. Ship it."):"Add a card with /track or /plan-work.";
+ g.setAttribute("aria-label",`${m||"Project"}: ${pct}% complete, ${say}`)}
 function render(){
  const q=$("#q").value.toLowerCase(),t=$("#type").value,p=$("#pri").value,m=$("#mile").value,mk=$("#mock").checked;
  try{localStorage.setItem("board-filters",JSON.stringify({q:$("#q").value,type:t,pri:p,mile:m,mock:mk}))}catch(e){}
@@ -292,6 +324,7 @@ function render(){
   return `<div class="col"><h2><span>${name}</span><span class="${over?"over":""}">${total}${s==="in-progress"?" / "+M.wip:""}</span></h2>${xs.map(card).join("")}
   ${s==="done"&&total>15&&!showAllDone?`<div class="more" onclick="showAllDone=true;render()">show all ${total}</div>`:""}</div>`}).join("")}
 ["#q","#type","#pri","#mile","#mock"].forEach(s=>$(s).addEventListener("input",render));render();
+$("#mile").addEventListener("input",gauge);requestAnimationFrame(()=>requestAnimationFrame(gauge));
 </script></body></html>"""
 
 if __name__ == "__main__":

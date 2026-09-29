@@ -18,7 +18,7 @@ work on `main`; owner's manual started in `docs/learn/how-it-works.md` (`docs/hi
 
 ## Next
 <!-- ≤ 5 bullets, in order. Each names the prompt that starts it. -->
-1. In a second terminal tab: `pc-build T-004` (builder; needs only T-001).
+1. `/assign T-004` in the manager (builder opens in the pane beside it; needs only T-001).
 2. `/build T-003`; `/build T-002` once the Databricks account exists.
 3. `/build T-005` after T-002, T-003, T-004 are merged; then the M1 career hand-off.
 
@@ -35,7 +35,7 @@ The full reasoning lives there, not here. -->
 - D-008 — bronze + silver medallion (`workspace.plant_bronze` / `plant_silver`)
 - D-009 — sensor columns use paper mnemonics + UC comments
 - D-010 — OAuth CLI login (no PAT), local download → UC volume, logic in `pipelines/`
-- D-011 — manager = `claude-jo` on `main`; builder = `claude-dev`, started with `pc-build T-NNN`
+- D-011 — manager = `claude-jo` on `main`; builder = `claude-dev`, given cards with `/assign T-NNN`
 
 ## Waiting on the owner
 <!-- Things only the owner can do: accounts, access, decisions, manual checks. -->

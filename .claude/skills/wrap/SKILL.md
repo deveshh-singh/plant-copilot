@@ -71,5 +71,10 @@ Run `/clear` (Codex: start a new session).
 Next, paste: `/build T-005`   ← who does it: Claude
 ```
 
+**Two Claude accounts** (`work/builders.conf` exists): a build card's next prompt is
+`/assign T-NNN   ← manager hands it to the builder pane` (outside cmux: `cbuild T-NNN`
+in a new terminal tab), not `/build T-NNN`. Write it the same way in STATE's "Next".
+`/review-work T-NNN` stays with the manager, in this checkout.
+
 If this session produced a lesson about how the owner wants to work (a correction
 or a standing preference), save it to memory before the block.

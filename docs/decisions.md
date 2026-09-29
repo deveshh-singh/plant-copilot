@@ -51,3 +51,5 @@ builder = `claude-dev` or plain `claude` (`~/.claude`, worktree `../plant-copilo
 `pc-build T-NNN` (a function in the owner's `~/.zshrc`) opens the builder in the worktree,
 moves a clean, detached worktree to the latest `main`, and starts `/build T-NNN`. **Why:** no
 folder or account mix-ups; keeps D-005's usage split. **By:** owner.
+**Since workflow 1.4.0:** the manager hands a card over with `/assign T-NNN` (builder opens in a
+cmux pane beside it) or `cbuild T-NNN` in a new tab; the mapping lives in `work/builders.conf`.

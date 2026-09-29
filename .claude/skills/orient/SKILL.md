@@ -29,6 +29,8 @@ Cheap by design: this costs about 5k tokens. Do not read beyond what is listed.
    - if the session-start line shows **LEARN**: "`/learn` — n concept(s) due for
      review, about 5 minutes" (one line, optional for the owner)
    - **the recommended next prompt**, exactly as it should be typed, and who will
-     do the work
+     do the work. If `work/builders.conf` exists (two Claude accounts), a build
+     card's prompt is `/assign T-NNN` (the manager hands it to the builder
+     pane; outside cmux `cbuild T-NNN` in a new tab), not `/build T-NNN`
 5. Do not start the work in this session unless the owner says so. When the next
    step is a build or a plan, it goes better in its own fresh session.
