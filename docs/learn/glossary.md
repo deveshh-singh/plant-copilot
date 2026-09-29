@@ -20,8 +20,17 @@ In this project: the data behind every agent (D-007).
 **Delta table** — a table stored as files plus a transaction log, so writes are all-or-nothing and old versions can be read.
 In this project: every M1 table.
 
+**Lockfile (`uv.lock`)** — the exact version of every library, written down so every machine installs the same set.
+In this project: pins pyspark 4.0.4; `uv sync` installs from it (T-001).
+
 **OAuth login** — you log in through the browser and the CLI keeps a short-lived pass; no password or token is copied anywhere.
 In this project: `databricks auth login --profile plant-copilot` (D-010).
+
+**pytest fixture** — a helper that sets something up for tests; a test asks for it by naming it as an argument. "Session scope" means it is built once per test run.
+In this project: the `spark` fixture in `tests/conftest.py` (T-001).
+
+**Ruff** — a fast tool that checks Python code for mistakes and style, and sorts imports.
+In this project: `uv run ruff check .` must say `All checks passed!` (T-001).
 
 **RUL (remaining useful life)** — how many more cycles an engine runs before it fails.
 In this project: the `rul` column in `sensor_readings` (T-004).

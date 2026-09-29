@@ -25,6 +25,9 @@ review = mastered: move it to the "Mastered:" line. -->
 | Remaining useful life (RUL) labels from run-to-failure data | 1 | 2026-09-29 | 2026-10-02 | T-004 |
 | Unit-testing PySpark with a local SparkSession | 1 | 2026-09-29 | 2026-10-02 | D-006, T-001 |
 | git worktree (two builders, one repo) | 1 | 2026-09-29 | 2026-10-02 | D-005 |
+| uv lockfile and `uv sync` / `uv run` | 1 | 2026-09-30 | 2026-10-02 | T-001 |
+| pytest fixtures (session scope, conftest.py) | 1 | 2026-09-30 | 2026-10-02 | T-001 |
+| Mutation check: break the code, see the test fail | 1 | 2026-09-30 | 2026-10-02 | T-001 A5 |
 
 ## Graduation checklist
 <!-- Ticked by /learn check only when the owner SHOWS it. The ten items are in

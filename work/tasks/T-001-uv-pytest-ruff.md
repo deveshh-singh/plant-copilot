@@ -2,7 +2,7 @@
 id: T-001
 title: uv project, pytest with local Spark, ruff
 type: chore
-status: in-review
+status: done
 priority: P1
 milestone: M0
 owner: Claude
@@ -14,7 +14,7 @@ links:
 blocked_by:
 created: 2026-09-29
 started: 2026-09-30
-done:
+done: 2026-09-30
 ---
 
 # T-001 — uv project, pytest with local Spark, ruff
@@ -62,4 +62,4 @@ needing another file is an open question in the report, not a quiet edit)
 - [ ] A5 — mutation: change the expected count to 4, confirm the test fails, restore
 
 ## Progress / resume point
-- built; in review (report work/reports/T-001.md)
+- done; merged 2026-09-30 (report work/reports/T-001.md)
