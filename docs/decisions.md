@@ -44,3 +44,10 @@ Unity Catalog comment giving meaning and unit. **Why:** what engineers use; comm
 **Decided:** CLI auth by OAuth (`databricks auth login`, profile `plant-copilot`), so no token
 is stored; data is downloaded locally to `data/raw/` and uploaded to a UC volume (serverless
 egress is limited). Transform logic lives in the `pipelines/` package. **By:** Claude (routine).
+
+## D-011 · 2026-09-30 · Which account is which, and the pc-build shortcut
+**Decided:** manager = `claude-jo` (`CLAUDE_CONFIG_DIR=~/.claude-account2`, main checkout);
+builder = `claude-dev` or plain `claude` (`~/.claude`, worktree `../plant-copilot-build`).
+`pc-build T-NNN` (a function in the owner's `~/.zshrc`) opens the builder in the worktree,
+moves a clean, detached worktree to the latest `main`, and starts `/build T-NNN`. **Why:** no
+folder or account mix-ups; keeps D-005's usage split. **By:** owner.
