@@ -26,6 +26,9 @@ fresh session can build without asking anything.
 - For each real decision, draw 2–3 options (ASCII, a small table, or a mock page
   for visual work). Say plainly whether they are **alternatives** or **parts of one
   design**. Recommend one, with the reason.
+- Under each option, one line **in plain words**: what it means for the owner
+  (what they'd see, what it costs, what gets harder later). A technical term gets a
+  half-line explanation the first time. Choosing is where the owner learns most.
 - Check the standing rules in `CLAUDE.md` and `docs/decisions.md`. Never offer an
   option a rule already forbids, and never re-open a settled decision.
 
@@ -44,7 +47,8 @@ fresh session can build without asking anything.
 - The card carries the decisions, the files (may / must not change), the spec
   and acceptance checks with commands, so the builder never has to re-ask.
 - Fill each card's **header** (type, priority, milestone, owner, `mockup:` for any
-  mock drawn in this plan, `created`), status `ready`. A `/track` stub the plan
+  mock drawn in this plan, `concepts:` the 1–3 ideas the owner will meet in it,
+  `created`), status `ready`. A `/track` stub the plan
   covers is **expanded in place** (same id), not duplicated. Then `python3 .claude/workflow/board.py`.
 
 ## 5 · Close

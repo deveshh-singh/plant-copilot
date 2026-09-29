@@ -6,6 +6,10 @@ this plus the diff, so it must say what was not done as plainly as what was. -->
 Branch: `{{…}}` · Built by: {{Claude|Codex}} · Changes: {{committed as abc123 |
 left uncommitted for review}}
 
+## In plain words
+{{2–3 lines for the owner, no jargon: what changed and its impact on the product
+or its users. /wrap reuses this as "What we did".}}
+
 ## What changed
 - `path` — {{one line}}
 

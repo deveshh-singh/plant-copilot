@@ -14,7 +14,8 @@ A fresh session knows only the repository. Anything not written down in these
 steps is lost at `/clear`.
 
 1. **History** — append one entry to `docs/history/<milestone>.md` in the format
-   in `docs/history/README.md`. For a bug, include the root cause and the causes
+   in `docs/history/README.md`, starting with an **In plain words** line (the
+   report's, if there is one). For a bug, include the root cause and the causes
    ruled out. For a plan, include the decisions and the cards cut.
 2. **Decisions** — every lasting decision made this session becomes a `D-NNN`
    entry in `docs/decisions.md`. If the owner must not see it undone, add a
@@ -28,6 +29,12 @@ steps is lost at `/clear`.
    `links:`), then `python3 .claude/workflow/board.py`. `work/BOARD.md` is generated: never edit it by hand.
    Done items drop out of it automatically.
 5. **Unfinished work** — write the card's "Progress / resume point" first.
+5b. **Learning** (level from `learning:` in `docs/learn/PROFILE.md`; no file =
+   standard, and create it from `.claude/workflow/templates/learn/`). Level off:
+   skip. Otherwise add each new concept this session used to PROFILE (level 1,
+   next review in 2 days) and each new term to `docs/learn/glossary.md`.
+   Standard or deep: make sure the lesson `docs/learn/lessons/T-NNN.md` exists for
+   a built or debugged card (`/build` and `/debug` write it).
 6. **Budget** — run `bash .claude/workflow/context-check.sh`. If anything is OVER, do the
    `/tidy` steps now, before committing.
 7. **Commit** everything with a message naming the card
@@ -42,9 +49,22 @@ steps is lost at `/clear`.
    it, e.g. `.github/workflows`, Cloudflare/Vercel/Netlify, a Databricks bundle
    deployed by CI), ask before pushing to `main`. Record that in STATE's "Known gaps
    and gotchas" so every session knows.
-9. **End the final message with this block**, filled in:
+9. **End the final message with this block**, filled in. **What we did** comes
+   first, always, at every level: 2–3 lines in plain words (no file names, no
+   jargon) saying what changed and its impact on the product or its users, or
+   for a plan, what was decided and what it will make possible. **What you
+   learned** (level light and above): 2–3 lines on the idea behind the change.
 
 ```
+### What we did
+Visitors can now save their JSON and come back to it later. Before, closing the
+tab lost everything, which was the most common complaint.
+
+### What you learned
+Saving works by storing the text in the browser's own small storage
+(*localStorage*), so there is no server or account needed. `/learn T-005` walks
+through it (5 min).
+
 ### Clear context
 Done, recorded and pushed (3 commits → GitHub). Now is the time to clear.
 Run `/clear` (Codex: start a new session).

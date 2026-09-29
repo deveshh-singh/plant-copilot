@@ -17,7 +17,7 @@ owner points there. Search them with `grep -n`; never read them whole.
 - **One session = one unit of work**: one plan, one card, one review, or one bug.
   Session starters: `/orient` · `/plan-work <goal>` · `/build T-NNN` ·
   `/review-work T-NNN` · `/debug <symptom>` · `/wrap` · `/tidy` ·
-  `/track <bug or idea>` · `/board` · `/retro`. Command table:
+  `/track <bug or idea>` · `/board` · `/retro` · `/learn`. Command table:
   `.claude/workflow/QUICKSTART.md`.
 - **The repository is the only memory.** The owner clears context between sessions.
   Every session ends with `/wrap`: record, commit, **push**, then a **Clear
@@ -45,6 +45,14 @@ owner points there. Search them with `grep -n`; never read them whole.
   Never let them derail the current card.
 - **WIP limit** (`work/board.conf`, default 2 in progress): finish before starting.
 - **Weekly:** `/retro`.
+
+## Teach as you build
+The owner is a builder learning to code; the goal is an owner who can explain,
+run, change and fix the project. Anything written for the owner uses plain words,
+explains a term the first time it appears, and gives the why. Never talk down.
+The level (`off`/`light`/`standard`/`deep`) is set in `docs/learn/PROFILE.md`
+(missing file = standard). Teaching goes into `docs/learn/` and the end of `/wrap`,
+never into build narration. `/learn` does the rest.
 
 ## Keep the context small
 - Read slices: `grep -n`, then read the lines needed. Never `cat` a big file, a log,

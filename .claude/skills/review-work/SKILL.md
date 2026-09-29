@@ -30,5 +30,10 @@ description: Reviews a finished task card (built by Claude, Codex or the owner) 
      anything STATE tracks, and delete the branch. Header → `status: done`,
      `done: <today>`.
 6. Anything worth doing later that the review found → `/track` stubs.
+6b. **For the owner** (learning level light and above): if the merged card changed
+   the shape of the system (a new part, service or data path), update
+   `docs/learn/how-it-works.md` (create it from `.claude/workflow/templates/learn/` if
+   missing). In the final message, give 1–3 **See it yourself** steps: the page to
+   open, the command to run, and what they should notice.
 7. `python3 .claude/workflow/board.py`, then run `/wrap`. It records the history entry, STATE, the board and decisions, and
    asks whether to push.

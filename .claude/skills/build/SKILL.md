@@ -30,6 +30,9 @@ description: Implements one task card end to end — branch, test-first changes,
   and ask only when something would change what the owner sees, or contradicts
   the card or a decision.
 - Keep output small: run tests quietly, show failures only.
+- **Level deep, owner present:** hand the owner 1–2 small, safe steps to do
+  themselves (type a change, run a command), and ask them to predict the result
+  first. Check their work; continue normally if they are away.
 - Found an unrelated bug or idea on the way? `/track` it (a stub, seconds) and
   carry on. Do not fix it inside this card.
 
@@ -40,7 +43,11 @@ on the branch, and end with the Clear context block: `/build T-NNN` resumes.
 
 ## Finish
 1. Run `/verify`: every acceptance check, with evidence.
-2. Write `work/reports/T-NNN.md` from `.claude/workflow/templates/report.md`.
+2. Write `work/reports/T-NNN.md` from `.claude/workflow/templates/report.md`,
+   starting with "In plain words" (what changed and its impact, for the owner).
+2b. Learning level standard or deep (`docs/learn/PROFILE.md`; no file = standard):
+   write `docs/learn/lessons/T-NNN.md` from `.claude/workflow/templates/learn/lesson.md`,
+   ≤ 1 page, using the card's `concepts:` and the real code.
 3. Card header → `status: in-review`; `python3 .claude/workflow/board.py`; commit on the branch.
 4. Small, low-risk card (a one-file fix): merge now and `/wrap`. Otherwise
    `/wrap` with next prompt `/review-work T-NNN`. A fresh session reviews

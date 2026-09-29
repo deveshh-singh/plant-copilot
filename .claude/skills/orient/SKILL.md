@@ -26,6 +26,8 @@ Cheap by design: this costs about 5k tokens. Do not read beyond what is listed.
    - where the project is (milestone, one line)
    - what is in flight and who holds it (Claude / Codex / owner)
    - anything waiting on the owner
+   - if the session-start line shows **LEARN**: "`/learn` — n concept(s) due for
+     review, about 5 minutes" (one line, optional for the owner)
    - **the recommended next prompt**, exactly as it should be typed, and who will
      do the work
 5. Do not start the work in this session unless the owner says so. When the next

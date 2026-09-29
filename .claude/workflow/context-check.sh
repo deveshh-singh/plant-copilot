@@ -39,6 +39,15 @@ if [ -f .claude/workflow/board.py ] && command -v python3 >/dev/null; then
   while IFS= read -r w; do [ -n "$w" ] && top+=("  BOARD $w"); done < <(python3 .claude/workflow/board.py --check 2>/dev/null)
 fi
 
+# Learning files (read only by /learn) and concepts due for review, unless the level is off
+check docs/learn/PROFILE.md       4096 0
+check docs/learn/how-it-works.md 10240 0
+if [ -f docs/learn/PROFILE.md ] && ! grep -qE '^learning: *off' docs/learn/PROFILE.md; then
+  due=$(awk -F'|' -v t="$(date +%Y-%m-%d)" 'NF > 5 { d = $5; gsub(/ /, "", d)
+    if (d ~ /^[0-9][0-9][0-9][0-9]-[0-9][0-9]-[0-9][0-9]$/ && d <= t) n++ } END { print n + 0 }' docs/learn/PROFILE.md)
+  [ "$due" -gt 0 ] && top+=("  LEARN $due concept(s) due for review — /learn (about 5 min)")
+fi
+
 # Template never adopted?
 if grep -qs '{{' CLAUDE.md STATE.md; then
   lines+=("  TODO  CLAUDE.md/STATE.md still have {{placeholders}} — run /adopt-workflow")

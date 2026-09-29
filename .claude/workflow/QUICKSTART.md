@@ -47,6 +47,7 @@ and even then the old copy is backed up.
 | `/track <bug or idea>` | Something worth doing comes up. Capture it in seconds without derailing the session | a stub card in **triage** |
 | `/board` | You want to *see* what's done, pending, blocked, and the bugs | the visual board opens in your browser |
 | `/retro` | Once a week | shipped, stuck, backlog pruned, one improvement |
+| `/learn` | You want to understand what you built (or the start line says **LEARN**). `/learn T-005` · `/learn how does login work?` · `/learn tour` · `/learn check` · `/learn level light` | you can explain, run, change and fix your project |
 | `/tidy` | The session-start line says **OVER** | the oversized files | the files back under budget; old text moved to history |
 | `/tdd` · `/verify` | Called by `/build`; use directly any time | — | tests first · evidence before "done" |
 
@@ -69,6 +70,8 @@ questions if it's a plan, and type `/clear` plus the prompt it hands you at the 
 | New day, fresh terminal | `/orient` |
 | "Found a bug" / "had an idea" mid-task | `/track <it>`, then carry on |
 | "What's pending? What's done? Show me" | `/board` (or open `work/board.html` yourself) |
+| "I don't understand what we just built" | `/learn T-NNN` (walkthrough) or `/learn <your question>` |
+| "Do I actually know my project?" | `/learn check` (the 10-point graduation checklist) |
 | A task has a mock-up | put its path or URL in the card header: `mockup: work/plans/x-mock.html, https://…` |
 | "I have an idea / a list of changes" | `/plan-work <the idea or list>` |
 | A small, obvious fix (one file, 5 minutes) | just describe it, then `/wrap` |
@@ -107,6 +110,8 @@ questions if it's a plan, and type `/clear` plus the prompt it hands you at the 
 | Why something is the way it is | `docs/decisions.md` (D-NNN) |
 | What happened, and when | `docs/history/` |
 | How a part of the system works | `docs/reference/` |
+| **Your manual:** how the project works, in plain words | `docs/learn/how-it-works.md` |
+| What a word means · what each card taught · what you know | `docs/learn/glossary.md` · `docs/learn/lessons/` · `docs/learn/PROFILE.md` |
 | Plans and option drawings | `work/plans/` |
 | The workflow itself (rules, check, templates, docs) — **don't edit here** | `.claude/workflow/` |
 | Which workflow version is installed | `.claude/workflow/INSTALLED` |

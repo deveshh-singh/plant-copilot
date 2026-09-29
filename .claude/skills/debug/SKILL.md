@@ -26,7 +26,11 @@ more later than an hour of finding the cause now.
    cause breaks anything else (grep for the pattern).
 5. **Regression test**: the reproduction from step 1 becomes a permanent test.
    Confirm it fails without the fix and passes with it.
-6. **Record** via `/wrap`: symptom, root cause, ruled-out causes, fix, verification.
+6. **Lesson** (learning level standard or deep): `docs/learn/lessons/T-NNN.md`
+   (or `bug-<slug>.md` without a card) from `.claude/workflow/templates/learn/lesson.md`:
+   what went wrong in plain words, why, and how the test stops it coming back.
+   Bugs teach more than features: show where the error pointed and how it was traced.
+7. **Record** via `/wrap`: symptom, root cause, ruled-out causes, fix, verification.
    A known trap goes into STATE's "Known gaps and gotchas".
 
 If three hypotheses in a row have failed, stop and re-read the evidence from

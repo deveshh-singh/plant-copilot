@@ -32,6 +32,8 @@ skills) and the starting files (seed). The master's path is in
   `gh repo create <name> --private --source=. --push`.
 - Offer your inferred commands (test / lint / build-or-deploy / smoke check) for
   confirmation, rather than asking for them blank.
+- Learning: how much teaching (standard recommended; light, deep, off), and what
+  the owner already knows (nothing yet / some HTML or spreadsheets / some code).
 
 ## 3 · Fill in
 - `CLAUDE.md`: every `{{…}}`, under 6 KB. For "Notes for this stack", copy only the
@@ -39,6 +41,10 @@ skills) and the starting files (seed). The master's path is in
 - `STATE.md`: the first "Now" and "Next" (milestone M1 is usually "set-up").
 - `docs/decisions.md`: D-001 = "Adopted the Claude workflow", plus any rule the
   owner gave with a reason.
+- `docs/learn/`: `PROFILE.md` and `glossary.md` from
+  `.claude/workflow/templates/learn/`, with the owner's level and background. For
+  a project that already has code, also a first `how-it-works.md` drawn from the
+  code (show the owner its picture). New project: create it with the first card.
 - **Old notes:** current truths → STATE; reasons → decisions; how-it-works →
   `docs/reference/`; the story → `docs/history/`. Do not create a giant STATE.
 - **Old hand-written `work/BOARD.md`** (the generator refuses to overwrite it): move

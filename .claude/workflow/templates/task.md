@@ -11,6 +11,7 @@ locks: path/a.py, path/b.py
 plan: work/plans/{{slug}}.md
 mockup:                  # comma-separated: work/plans/x-mock.html, https://… (Figma, artifact)
 links:                   # PR, issue, docs, dashboard
+concepts:                # 1–3 ideas the owner meets here (e.g. API route, SQL join): feeds the lesson
 blocked_by:
 created: {{YYYY-MM-DD}}
 started:

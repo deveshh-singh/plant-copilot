@@ -25,5 +25,8 @@ Read card **headers**, not bodies. This session should stay small.
 5. **One improvement:** what slowed the week (a flaky test, cards too big, waiting
    on the owner)? Propose **one** concrete change. If it is a workflow change,
    it goes to the master through `/update-workflow` (section B).
+5b. **Learning** (skip at level off): from `docs/learn/PROFILE.md`, the concepts
+   met this week, how many are due or overdue, and the graduation checklist count
+   (n / 10). Two lines, then suggest `/learn` in its own session.
 6. Append the retro (≤ 15 lines) to `docs/history/retros.md`, newest first. Update
    STATE's "Now" if the milestone picture changed. Then `/wrap`.
