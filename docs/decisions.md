@@ -23,3 +23,24 @@ Mac mini M4 cover the plan. Paid services need the owner's approval first. **By:
 ## D-005 · 2026-09-29 · Two Claude accounts
 **Decided:** one account manages on `main`, the other builds one card at a time in a git
 worktree, per `.claude/workflow/docs/two-builders.md`. No Codex, so no AGENTS.md. **By:** owner.
+
+## D-006 · 2026-09-29 · Local PySpark tests on Java 17
+**Decided:** unit tests run offline with local PySpark on Homebrew `openjdk@17`, not Databricks
+Connect. **Why:** fast, offline, and the standard setup. **By:** owner.
+
+## D-007 · 2026-09-29 · All four C-MAPSS subsets
+**Decided:** load FD001–FD004 (train, test, RUL). **Why:** 6 operating conditions and 2 fault
+modes give Text2SQL and the model richer questions; still small (~265k rows). **By:** owner.
+
+## D-008 · 2026-09-29 · Bronze + silver medallion
+**Decided:** `workspace.plant_bronze.cmapss_raw` keeps rows as in the files; `workspace.plant_silver`
+holds `datasets`, `engines`, `sensor_readings` for agents. Gold feature tables come in M2. **By:** owner.
+
+## D-009 · 2026-09-29 · Sensor columns use the paper mnemonics
+**Decided:** columns named from Saxena et al. 2008 (`t24`, `t30`, `nf`, `ps30`, ...), each with a
+Unity Catalog comment giving meaning and unit. **Why:** what engineers use; comments carry meaning for Text2SQL. **By:** owner.
+
+## D-010 · 2026-09-29 · Databricks access and data landing
+**Decided:** CLI auth by OAuth (`databricks auth login`, profile `plant-copilot`), so no token
+is stored; data is downloaded locally to `data/raw/` and uploaded to a UC volume (serverless
+egress is limited). Transform logic lives in the `pipelines/` package. **By:** Claude (routine).
