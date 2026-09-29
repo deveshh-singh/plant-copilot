@@ -6,3 +6,5 @@ data/raw/
 mlruns/
 .DS_Store
 CLAUDE.local.md
+work/board.html
+.claude/workflow-backup/
