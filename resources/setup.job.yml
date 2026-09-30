@@ -1,0 +1,10 @@
+# One-off setup: creates the schemas and the raw volume M1 needs (idempotent).
+# No cluster block: Free Edition is serverless only, so the task runs on serverless compute.
+resources:
+  jobs:
+    setup:
+      name: plant-copilot-setup
+      tasks:
+        - task_key: setup
+          notebook_task:
+            notebook_path: ../notebooks/00_setup.py

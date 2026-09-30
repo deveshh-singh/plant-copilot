@@ -2,7 +2,7 @@
 id: T-002
 title: Databricks CLI, auth and bundle skeleton
 type: chore
-status: ready
+status: in-review
 priority: P1
 milestone: M0
 owner: Claude
@@ -13,7 +13,7 @@ mockup:
 links:
 blocked_by: T-001, owner creates the Databricks Free Edition account
 created: 2026-09-29
-started:
+started: 2026-09-30
 done:
 ---
 

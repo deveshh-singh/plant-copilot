@@ -1,0 +1,23 @@
+# Databricks Asset Bundle for Plant Copilot.
+# validate → deploy -t dev → run -t dev <job>. Auth is OAuth via the CLI profile (D-010),
+# so no token lives in this repo.
+bundle:
+  name: plant-copilot
+
+include:
+  - resources/*.yml
+
+# Only code goes to the workspace; the workflow and planning files stay local.
+sync:
+  exclude:
+    - .claude/**
+    - work/**
+    - docs/**
+
+targets:
+  dev:
+    mode: development
+    default: true
+    workspace:
+      host: https://dbc-8b90102c-1331.cloud.databricks.com
+      profile: plant-copilot
