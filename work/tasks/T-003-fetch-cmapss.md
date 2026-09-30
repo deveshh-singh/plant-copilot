@@ -2,7 +2,7 @@
 id: T-003
 title: Fetch C-MAPSS and land it in a volume
 type: feature
-status: in-review
+status: done
 priority: P1
 milestone: M1
 owner: Claude
@@ -14,7 +14,7 @@ links:
 blocked_by: T-001 (upload step A4 also needs T-002)
 created: 2026-09-29
 started: 2026-09-30
-done:
+done: 2026-09-30
 ---
 
 # T-003 — Fetch C-MAPSS and land it in a volume
@@ -64,3 +64,7 @@ are no-ops) and, with `--upload`, copies the 12 text files into
 
 ## Progress / resume point
 - Built 2026-09-30; A1–A3, A5, A6 pass. A4 blocked: schema `workspace.plant_bronze` does not exist until T-002. Rerun `--upload` after T-002. Report: `work/reports/T-003.md`.
+
+## Review round 1 (manager, 2026-09-30)
+- Accepted and merged. Reran myself: 32 passed, ruff clean, cached rerun prints 14 lines (cached + zip + 12 files), nothing under `data/` in git.
+- A4 cannot run until the schema exists, so it moves to T-002 as A7.

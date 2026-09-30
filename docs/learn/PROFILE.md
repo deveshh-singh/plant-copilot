@@ -30,6 +30,8 @@ review = mastered: move it to the "Mastered:" line. -->
 | Mutation check: break the code, see the test fail | 1 | 2026-09-30 | 2026-10-02 | T-001 A5 |
 | Window functions (`max` over a partition, keeps every row) | 1 | 2026-09-30 | 2026-10-02 | T-004 `rul` |
 | Keeping file line order outside Spark (`line_no` from the reader) | 1 | 2026-09-30 | 2026-10-02 | D-012 |
+| Idempotent, cached data pulls (rerun = no-op; `.part` file then rename) | 1 | 2026-09-30 | 2026-10-02 | T-003 |
+| Checksums (sha256) and a manifest to prove which data you used | 1 | 2026-09-30 | 2026-10-02 | T-003 |
 
 ## Graduation checklist
 <!-- Ticked by /learn check only when the owner SHOWS it. The ten items are in

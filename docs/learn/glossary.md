@@ -46,3 +46,6 @@ In this project: `max(cycle)` per engine, used to compute `rul` on every row (T-
 
 **Worktree** — a second folder checked out from the same git repo, so two sessions can work without touching each other's files.
 In this project: `../plant-copilot-build`, where the builder account works (D-005).
+
+**Checksum (sha256)** — a short fingerprint computed from a file's bytes; change one byte and the fingerprint changes completely.
+In this project: `MANIFEST.json` stores one per C-MAPSS file, so results can name the exact data they came from (T-003).

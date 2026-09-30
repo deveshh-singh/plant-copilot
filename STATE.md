@@ -5,24 +5,26 @@ STATE, NOT STORY: this file says what is true now, not how we got here. Every
 section is REPLACED on update, never appended to. The story goes in docs/history/.
 Rules for each section are in the comments. /wrap keeps it current; /tidy shrinks it. -->
 
-**Last updated:** 2026-09-30 — T-004 reviewed and merged: tested C-MAPSS transforms (bronze +
-three silver tables) in `pipelines/`; D-012, T-008 tracked (`docs/history/m0-setup.md`).
+**Last updated:** 2026-09-30 — T-003 reviewed and merged: `scripts/fetch_cmapss.py` downloads
+the 12 C-MAPSS files to `data/raw/cmapss/`; upload check moved to T-002 A7 (`docs/history/m0-setup.md`).
 
 ## Now
 <!-- ≤ 8 bullets. The milestone, what works, what is half-done. -->
-- Milestone: **M0 — Setup / M1 — Data**. Done: T-001 (uv, local Spark tests, ruff) and T-004
+- Milestone: **M0 — Setup / M1 — Data**. Done: T-001 (uv, local Spark tests, ruff), T-004
   (`pipelines/cmapss.py` + `cmapss_schema.py`: text lines → `cmapss_raw` → `sensor_readings`,
-  `engines`, `datasets`, tested on tiny inputs; not yet run on the real files).
-- T-002 (Databricks bundle) and T-003 (fetch) are ready; account exists and CLI profile
-  `plant-copilot` is logged in (OAuth, D-010). T-005 (load job) waits on T-002 and T-003.
+  `engines`, `datasets`, tested on tiny inputs; not yet run on the real files) and T-003
+  (`scripts/fetch_cmapss.py`: 12 files in `data/raw/cmapss/`, 265,256 train+test lines).
+- T-002 (Databricks bundle) is ready and now also owns the upload check (A7: `--upload` → 12
+  files in the volume). CLI profile `plant-copilot` is logged in (OAuth, D-010). T-005 waits on T-002.
 - Plan: `work/plans/m0-m1-setup-and-data.md`. Builder worktree: `../plant-copilot-build`
-  (parked detached on `main`).
+  (still on the merged branch `claude/T-003-fetch-cmapss`; `build.sh` moves it to `main` at the
+  next `/assign`, then delete the branch).
 
 ## Next
 <!-- ≤ 5 bullets, in order. Each names the prompt that starts it. -->
-1. `/assign T-003   ← manager hands it to the builder pane` (fetch C-MAPSS to a volume).
-2. `/assign T-002` (bundle skeleton; account and CLI login are done). Review each with `/review-work`.
-3. `/assign T-005` after T-002 and T-003 are merged (read files with `open()` + `lines_frame`,
+1. `/assign T-002   ← manager hands it to the builder pane` (bundle skeleton + upload check A7).
+   Review with `/review-work T-002`.
+2. `/assign T-005` after T-002 and T-003 are merged (read files with `open()` + `lines_frame`,
    D-012; settle T-008 in its data checks); then the M1 career hand-off.
 
 ## Must not undo
@@ -57,7 +59,7 @@ The full reasoning lives there, not here. -->
 ## Numbers we track
 <!-- Optional: bundle size, test count, job runtime, cost per run, row counts.
 One line each, current value only. The history of each number goes in docs/reference/. -->
-- Tests: 26 passing (`uv run pytest -q`, ~8 s)
+- Tests: 32 passing (`uv run pytest -q`, ~8 s)
 
 ## Where things live
 - Rules: `CLAUDE.md` · Decisions: `docs/decisions.md` · History: `docs/history/`

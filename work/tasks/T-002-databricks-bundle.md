@@ -63,6 +63,7 @@ schemas and the raw volume that M1 needs. That is the end of M0.
 - [ ] A4 — `databricks schemas list workspace -p plant-copilot` shows `plant_bronze` and `plant_silver`; `databricks volumes list workspace plant_bronze -p plant-copilot` shows `raw`
 - [ ] A5 — `git grep -nE "dapi[0-9a-f]{8}"` finds nothing; `.env` not tracked
 - [ ] A6 — `uv run pytest -q` and `uv run ruff check .` still green
+- [ ] A7 — carried from T-003 A4: `uv run python scripts/fetch_cmapss.py --upload`, then `databricks fs ls dbfs:/Volumes/workspace/plant_bronze/raw/cmapss -p plant-copilot` lists 12 files
 
 ## Progress / resume point
 - not started
