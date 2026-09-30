@@ -11,7 +11,8 @@ work on `main`; owner's manual started in `docs/learn/how-it-works.md` (`docs/hi
 ## Now
 <!-- ≤ 8 bullets. The milestone, what works, what is half-done. -->
 - Milestone: **M0 — Setup**. T-001 done: `uv run pytest -q` (local Spark on Java 17) and
-  `uv run ruff check .` work on `main`. T-002 (Databricks bundle) is ready, waiting on the account.
+  `uv run ruff check .` work on `main`. T-002 (Databricks bundle) is ready; the account exists and the CLI
+  profile `plant-copilot` is logged in (OAuth, D-010).
 - M1 cards T-003 (fetch), T-004 (transforms), T-005 (load job) are ready.
 - Plan: `work/plans/m0-m1-setup-and-data.md`. Builder worktree: `../plant-copilot-build`
   (parked detached on `main`).
@@ -19,7 +20,7 @@ work on `main`; owner's manual started in `docs/learn/how-it-works.md` (`docs/hi
 ## Next
 <!-- ≤ 5 bullets, in order. Each names the prompt that starts it. -->
 1. `/assign T-004` in the manager (builder opens in the pane beside it; needs only T-001).
-2. `/build T-003`; `/build T-002` once the Databricks account exists.
+2. `/assign T-003`, then `/assign T-002` (account and CLI login are done).
 3. `/build T-005` after T-002, T-003, T-004 are merged; then the M1 career hand-off.
 
 ## Must not undo
@@ -39,8 +40,7 @@ The full reasoning lives there, not here. -->
 
 ## Waiting on the owner
 <!-- Things only the owner can do: accounts, access, decisions, manual checks. -->
-- Create the Databricks Free Edition account (blocks T-002). No token needed: T-002 uses
-  `databricks auth login` (D-010).
+- Nothing right now.
 
 ## Known gaps and gotchas
 <!-- ≤ 10. Traps a fresh session would fall into: flaky tests, environment quirks,

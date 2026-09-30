@@ -5,7 +5,7 @@ Budget: 4 KB. One row per concept. /wrap adds new concepts at level 1; /learn mo
 them up or down. When the table grows past the budget, fold mastered rows into the
 "Mastered:" line at the bottom. -->
 
-learning: standard        # off | light | standard | deep (the owner can change it any time)
+learning: deep            # off | light | standard | deep (the owner can change it any time)
 knows already: "Python; industrial predictive maintenance (Wipro, petrochemical plants). New to Databricks, PySpark, LangGraph, DSPy, fine-tuning, MLflow eval."
 
 ## Concepts
