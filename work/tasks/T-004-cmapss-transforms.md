@@ -2,7 +2,7 @@
 id: T-004
 title: C-MAPSS parse and silver transforms (pure, tested)
 type: feature
-status: ready
+status: in-review
 priority: P1
 milestone: M1
 owner: Claude
@@ -13,7 +13,7 @@ mockup:
 links:
 blocked_by: T-001
 created: 2026-09-29
-started:
+started: 2026-09-30
 done:
 ---
 
@@ -77,12 +77,12 @@ All of it is unit-tested locally on tiny in-memory DataFrames. T-005 only wires 
 - `to_datasets(spark, engines) -> DataFrame[dataset, operating_conditions, fault_modes, train_engines, test_engines]`.
 
 ## Acceptance checks
-- [ ] A1 — tests on hand-written tiny inputs (2 engines × 3 cycles, one train file, one test file + RUL, a line with trailing spaces, a blank line):
+- [x] A1 — tests on hand-written tiny inputs (2 engines × 3 cycles, one train file, one test file + RUL, a line with trailing spaces, a blank line):
       exact bronze row count and types; engine_id format; train RUL = [2,1,0]; test RUL with true_rul=10 → [12,11,10]
-- [ ] A2 — test: every column of every output DataFrame has an entry in `COLUMN_COMMENTS` (and no extra entries)
-- [ ] A3 — test: `parse_file_name("RUL_FD001.txt")` path handled; `"foo.txt"` raises
-- [ ] A4 — `uv run pytest -q` green (before → after counts); `uv run ruff check .` clean
-- [ ] A5 — mutation: change the test RUL formula to drop `true_rul`, confirm ≥ 1 test fails, restore
+- [x] A2 — test: every column of every output DataFrame has an entry in `COLUMN_COMMENTS` (and no extra entries)
+- [x] A3 — test: `parse_file_name("RUL_FD001.txt")` path handled; `"foo.txt"` raises
+- [x] A4 — `uv run pytest -q` green (before → after counts); `uv run ruff check .` clean
+- [x] A5 — mutation: change the test RUL formula to drop `true_rul`, confirm ≥ 1 test fails, restore
 
 ## Progress / resume point
-- not started
+- built; report in `work/reports/T-004.md`, waiting for review
