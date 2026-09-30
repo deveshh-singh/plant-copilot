@@ -28,6 +28,8 @@ review = mastered: move it to the "Mastered:" line. -->
 | uv lockfile and `uv sync` / `uv run` | 1 | 2026-09-30 | 2026-10-02 | T-001 |
 | pytest fixtures (session scope, conftest.py) | 1 | 2026-09-30 | 2026-10-02 | T-001 |
 | Mutation check: break the code, see the test fail | 1 | 2026-09-30 | 2026-10-02 | T-001 A5 |
+| Window functions (`max` over a partition, keeps every row) | 1 | 2026-09-30 | 2026-10-02 | T-004 `rul` |
+| Keeping file line order outside Spark (`line_no` from the reader) | 1 | 2026-09-30 | 2026-10-02 | D-012 |
 
 ## Graduation checklist
 <!-- Ticked by /learn check only when the owner SHOWS it. The ten items are in

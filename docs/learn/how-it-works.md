@@ -9,20 +9,26 @@ append a story. A technical word gets a glossary entry the first time it appears
 Plant Copilot will answer questions about jet-engine maintenance data: a
 "supervisor" agent sends each question to the right helper (one that writes SQL
 over sensor tables, one that searches maintenance documents, one that predicts
-remaining engine life). **Today only the foundation exists**: a Python project on
-your Mac that can run tests against a small, local copy of Spark (the same data
-engine Databricks uses), so data logic can be checked offline before it runs in
-the cloud.
+remaining engine life). **Today the foundation and the data recipes exist**: a
+Python project on your Mac that runs tests against a small, local copy of Spark (the
+same data engine Databricks uses), and the tested functions that turn NASA's engine
+text files into clean tables. Nothing runs on Databricks yet.
 
 ## The picture
 ```
-Today (after T-001):
+Today (after T-004):
 
-  your code in pipelines/ ──► tests/ (pytest) ──► local Spark on the Mac
-                                                   (Java 17 from Homebrew)
+  pipelines/cmapss.py ──► tests/test_cmapss.py ──► local Spark on the Mac
+  (text lines → tables)   (tiny hand-written files)  (Java 17 from Homebrew)
 
-Planned (M1 onwards):
-  NASA C-MAPSS files ──► Databricks volume ──► Delta tables ──► agents ──► app
+The data path those functions implement (T-005 will run it on Databricks):
+
+  train_/test_FD00x.txt ─ lines_frame ─► to_bronze ─► cmapss_raw (bronze: file as-is)
+  RUL_FD00x.txt ───────── lines_frame ─► parse_rul ─┐
+                                   cmapss_raw + RUL ─┴► to_sensor_readings ─► sensor_readings
+                                                       ├► to_engines ──────► engines
+                                                       └► to_datasets ─────► datasets
+Planned (M2 onwards): Delta tables ──► agents ──► app
 ```
 
 ## Follow one thing through
@@ -40,12 +46,13 @@ When you run `uv run pytest -q`:
 | --- | --- | --- | --- |
 | uv project | Installs Python 3.12 and the libraries, pinned | `pyproject.toml`, `uv.lock`, `.python-version` | `uv sync` errors, or "module not found" |
 | Local Spark for tests | A mini data engine for offline tests | `tests/conftest.py` | "Java gateway process exited" (Java missing) |
-| Data logic package | Home for pure PySpark transforms (empty for now) | `pipelines/` | import errors in tests |
+| C-MAPSS transforms | Text lines → bronze → the three silver tables, and every RUL | `pipelines/cmapss.py` | a failing test in `tests/test_cmapss.py`; on real data, a Spark error naming the bad file or line |
+| Column dictionary | Each sensor's paper name, meaning and unit, and a comment for every column (what the Text2SQL agent will read) | `pipelines/cmapss_schema.py` | `test_every_output_column_has_a_comment_and_no_extras` fails |
 | Ruff | Checks code style and import order | `[tool.ruff]` in `pyproject.toml` | `uv run ruff check .` lists problems |
 
 ## Running it
 - On your computer: `uv sync` → installs everything into `.venv/`
-- Tests: `uv run pytest -q` → `1 passed`; a failure prints `1 failed` and the
+- Tests: `uv run pytest -q` → `26 passed`; a failure prints `1 failed` and the
   assertion that did not hold
 - Lint: `uv run ruff check .` → `All checks passed!`
 - Putting it live: not yet (Databricks bundle comes in T-002)

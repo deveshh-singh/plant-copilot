@@ -53,3 +53,11 @@ moves a clean, detached worktree to the latest `main`, and starts `/build T-NNN`
 folder or account mix-ups; keeps D-005's usage split. **By:** owner.
 **Since workflow 1.4.0:** the manager hands a card over with `/assign T-NNN` (builder opens in a
 cmux pane beside it) or `cbuild T-NNN` in a new tab; the mapping lives in `work/builders.conf`.
+
+## D-012 · 2026-09-30 · Line order for RUL files comes from Python, not Spark
+**Decided:** the reader numbers each file's lines in Python (`cmapss.lines_frame`, `enumerate`)
+before Spark sees them; `parse_rul` uses that `line_no` as the unit. T-005 reads each file's
+text (plain `open()` on `/Volumes/...`) and calls `lines_frame`. **Why:** Spark does not promise
+file order, and serverless has no RDD API (`zipWithIndex`); the files are small (~265k lines).
+Bad input (unknown file name, a line without 26 fields) fails the query with `raise_error`.
+**By:** Claude (builder, T-004), accepted at review.

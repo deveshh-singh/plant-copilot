@@ -2,7 +2,7 @@
 id: T-004
 title: C-MAPSS parse and silver transforms (pure, tested)
 type: feature
-status: in-review
+status: done
 priority: P1
 milestone: M1
 owner: Claude
@@ -14,7 +14,7 @@ links:
 blocked_by: T-001
 created: 2026-09-29
 started: 2026-09-30
-done:
+done: 2026-09-30
 ---
 
 # T-004 — C-MAPSS parse and silver transforms (pure, tested)

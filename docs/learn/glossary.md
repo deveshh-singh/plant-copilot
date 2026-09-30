@@ -41,5 +41,8 @@ In this project: all jobs on Free Edition.
 **Unity Catalog** — Databricks' three-level naming and permissions: catalog.schema.table, plus volumes for files.
 In this project: `workspace.plant_silver.engines`, volume `workspace.plant_bronze.raw`.
 
+**Window function** — a calculation over a group of related rows that still returns one value per row (unlike `groupBy`, which collapses the group).
+In this project: `max(cycle)` per engine, used to compute `rul` on every row (T-004).
+
 **Worktree** — a second folder checked out from the same git repo, so two sessions can work without touching each other's files.
 In this project: `../plant-copilot-build`, where the builder account works (D-005).

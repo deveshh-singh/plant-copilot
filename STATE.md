@@ -5,23 +5,25 @@ STATE, NOT STORY: this file says what is true now, not how we got here. Every
 section is REPLACED on update, never appended to. The story goes in docs/history/.
 Rules for each section are in the comments. /wrap keeps it current; /tidy shrinks it. -->
 
-**Last updated:** 2026-09-30 — T-001 reviewed and merged: uv project, local Spark tests and ruff
-work on `main`; owner's manual started in `docs/learn/how-it-works.md` (`docs/history/m0-setup.md`).
+**Last updated:** 2026-09-30 — T-004 reviewed and merged: tested C-MAPSS transforms (bronze +
+three silver tables) in `pipelines/`; D-012, T-008 tracked (`docs/history/m0-setup.md`).
 
 ## Now
 <!-- ≤ 8 bullets. The milestone, what works, what is half-done. -->
-- Milestone: **M0 — Setup**. T-001 done: `uv run pytest -q` (local Spark on Java 17) and
-  `uv run ruff check .` work on `main`. T-002 (Databricks bundle) is ready; the account exists and the CLI
-  profile `plant-copilot` is logged in (OAuth, D-010).
-- M1 cards T-003 (fetch), T-004 (transforms), T-005 (load job) are ready.
+- Milestone: **M0 — Setup / M1 — Data**. Done: T-001 (uv, local Spark tests, ruff) and T-004
+  (`pipelines/cmapss.py` + `cmapss_schema.py`: text lines → `cmapss_raw` → `sensor_readings`,
+  `engines`, `datasets`, tested on tiny inputs; not yet run on the real files).
+- T-002 (Databricks bundle) and T-003 (fetch) are ready; account exists and CLI profile
+  `plant-copilot` is logged in (OAuth, D-010). T-005 (load job) waits on T-002 and T-003.
 - Plan: `work/plans/m0-m1-setup-and-data.md`. Builder worktree: `../plant-copilot-build`
   (parked detached on `main`).
 
 ## Next
 <!-- ≤ 5 bullets, in order. Each names the prompt that starts it. -->
-1. `/assign T-004` in the manager (builder opens in the pane beside it; needs only T-001).
-2. `/assign T-003`, then `/assign T-002` (account and CLI login are done).
-3. `/build T-005` after T-002, T-003, T-004 are merged; then the M1 career hand-off.
+1. `/assign T-003   ← manager hands it to the builder pane` (fetch C-MAPSS to a volume).
+2. `/assign T-002` (bundle skeleton; account and CLI login are done). Review each with `/review-work`.
+3. `/assign T-005` after T-002 and T-003 are merged (read files with `open()` + `lines_frame`,
+   D-012; settle T-008 in its data checks); then the M1 career hand-off.
 
 ## Must not undo
 <!-- ≤ 15 one-liners, each pointing at a numbered decision in docs/decisions.md.
@@ -37,6 +39,7 @@ The full reasoning lives there, not here. -->
 - D-009 — sensor columns use paper mnemonics + UC comments
 - D-010 — OAuth CLI login (no PAT), local download → UC volume, logic in `pipelines/`
 - D-011 — manager = `claude-jo` on `main`; builder = `claude-dev`, given cards with `/assign T-NNN`
+- D-012 — RUL line order from Python `lines_frame`, never Spark row order
 
 ## Waiting on the owner
 <!-- Things only the owner can do: accounts, access, decisions, manual checks. -->
@@ -54,7 +57,7 @@ The full reasoning lives there, not here. -->
 ## Numbers we track
 <!-- Optional: bundle size, test count, job runtime, cost per run, row counts.
 One line each, current value only. The history of each number goes in docs/reference/. -->
-- Tests: 1 passing (`uv run pytest -q`, ~7 s)
+- Tests: 26 passing (`uv run pytest -q`, ~8 s)
 
 ## Where things live
 - Rules: `CLAUDE.md` · Decisions: `docs/decisions.md` · History: `docs/history/`
