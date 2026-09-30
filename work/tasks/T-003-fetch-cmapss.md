@@ -2,7 +2,7 @@
 id: T-003
 title: Fetch C-MAPSS and land it in a volume
 type: feature
-status: ready
+status: in-review
 priority: P1
 milestone: M1
 owner: Claude
@@ -13,7 +13,7 @@ mockup:
 links:
 blocked_by: T-001 (upload step A4 also needs T-002)
 created: 2026-09-29
-started:
+started: 2026-09-30
 done:
 ---
 
@@ -55,12 +55,12 @@ are no-ops) and, with `--upload`, copies the 12 text files into
   Tests never hit the network.
 
 ## Acceptance checks
-- [ ] A1 — `uv run python scripts/fetch_cmapss.py` → 12 summary lines; second run says "cached" and does not download
-- [ ] A2 — `uv run pytest -q` green, including the new tests (before → after counts)
-- [ ] A3 — `uv run ruff check .` clean
+- [x] A1 — `uv run python scripts/fetch_cmapss.py` → 12 summary lines; second run says "cached" and does not download
+- [x] A2 — `uv run pytest -q` green, including the new tests (before → after counts)
+- [x] A3 — `uv run ruff check .` clean
 - [ ] A4 — (after T-002) `--upload` then `databricks fs ls dbfs:/Volumes/workspace/plant_bronze/raw/cmapss -p plant-copilot` lists 12 files
-- [ ] A5 — mutation: delete one file from the fake tmp zip in a test's setup, confirm the missing-file test catches it
-- [ ] A6 — `git status` shows nothing under `data/`
+- [x] A5 — mutation: delete one file from the fake tmp zip in a test's setup, confirm the missing-file test catches it
+- [x] A6 — `git status` shows nothing under `data/`
 
 ## Progress / resume point
-- not started
+- Built 2026-09-30; A1–A3, A5, A6 pass. A4 blocked: schema `workspace.plant_bronze` does not exist until T-002. Rerun `--upload` after T-002. Report: `work/reports/T-003.md`.
