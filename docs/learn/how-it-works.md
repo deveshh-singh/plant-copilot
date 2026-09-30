@@ -13,14 +13,20 @@ remaining engine life). **Today the foundation and the data recipes exist**: a
 Python project on your Mac that runs tests against a small, local copy of Spark (the
 same data engine Databricks uses), and the tested functions that turn NASA's engine
 text files into clean tables, and a script that downloads those files to your Mac.
-Nothing runs on Databricks yet.
+**On Databricks** (since T-002), a deploy recipe (an Asset Bundle) puts the code in
+your workspace, and a one-off `setup` job has created the two schemas (folders for
+tables) and the `raw` volume (a folder for files) where the NASA files now sit.
 
 ## The picture
 ```
-Today (after T-003 and T-004):
+Today (after T-002, T-003 and T-004):
 
   scripts/fetch_cmapss.py ─► NASA zip (cached) ─► data/raw/cmapss/ 12 .txt + MANIFEST.json
-                         └─ --upload (after T-002) ─► /Volumes/workspace/plant_bronze/raw/cmapss/
+                         └─ --upload ─► /Volumes/workspace/plant_bronze/raw/cmapss/ (12 files)
+
+  databricks.yml + resources/setup.job.yml ── bundle deploy -t dev ─► your workspace
+     └─ bundle run -t dev setup ─► notebooks/00_setup.py on serverless compute
+                                    └► schemas plant_bronze, plant_silver + volume raw
 
   pipelines/cmapss.py ──► tests/test_cmapss.py ──► local Spark on the Mac
   (text lines → tables)   (tiny hand-written files)  (Java 17 from Homebrew)
@@ -53,6 +59,8 @@ When you run `uv run pytest -q`:
 | C-MAPSS transforms | Text lines → bronze → the three silver tables, and every RUL | `pipelines/cmapss.py` | a failing test in `tests/test_cmapss.py`; on real data, a Spark error naming the bad file or line |
 | Data fetch | Downloads the NASA zip once, unpacks the 12 files, records size, fingerprint and line count of each | `scripts/fetch_cmapss.py` → `data/raw/cmapss/` (not in git) | "error: missing from …" naming the absent file, or a network error on first download |
 | Column dictionary | Each sensor's paper name, meaning and unit, and a comment for every column (what the Text2SQL agent will read) | `pipelines/cmapss_schema.py` | `test_every_output_column_has_a_comment_and_no_extras` fails |
+| Deploy bundle | Describes what goes to Databricks (code only) and the `setup` job; login is the `plant-copilot` CLI profile, no token | `databricks.yml`, `resources/` | `bundle validate` errors, or "cannot configure default credentials" (log in again) |
+| Setup job | Creates the schemas and the raw volume; safe to run again | `notebooks/00_setup.py` | run status `FAILED` with the SQL error in the run page |
 | Ruff | Checks code style and import order | `[tool.ruff]` in `pyproject.toml` | `uv run ruff check .` lists problems |
 
 ## Running it
@@ -62,14 +70,18 @@ When you run `uv run pytest -q`:
 - Tests: `uv run pytest -q` → `32 passed`; a failure prints `1 failed` and the
   assertion that did not hold
 - Lint: `uv run ruff check .` → `All checks passed!`
-- Putting it live: not yet (Databricks bundle comes in T-002)
+- Putting it on Databricks: `databricks bundle validate` → `Validation OK!`, then
+  `databricks bundle deploy -t dev`, then `databricks bundle run -t dev setup` →
+  `TERMINATED SUCCESS` and a Run URL you can open
 
 ## Money, secrets and accounts
 - Costs money: nothing (standing rule 3: free tools only)
-- Secrets live in: `.env` (not used yet; never committed)
-- Accounts you own: GitHub; Databricks Free Edition from T-002
+- Secrets live in: nowhere in the repo. Databricks login is OAuth (a browser sign-in the
+  CLI remembers), not a token; `.env` holds only the profile name and host
+- Accounts you own: GitHub; Databricks Free Edition (`dbc-8b90102c-1331`)
 
 ## If something goes wrong
 - Tests hang or say Java is missing → `ls /opt/homebrew/opt/openjdk@17`; if absent,
   `brew install openjdk@17`
+- Databricks says the login expired → `! databricks auth login --host https://dbc-8b90102c-1331.cloud.databricks.com --profile plant-copilot`
 - Undo the last change: `git log --oneline`, then `git revert <id>` (Claude can do it with you)

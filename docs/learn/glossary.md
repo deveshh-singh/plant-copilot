@@ -49,3 +49,7 @@ In this project: `../plant-copilot-build`, where the builder account works (D-00
 
 **Checksum (sha256)** — a short fingerprint computed from a file's bytes; change one byte and the fingerprint changes completely.
 In this project: `MANIFEST.json` stores one per C-MAPSS file, so results can name the exact data they came from (T-003).
+
+**Development mode (bundle target)** — a bundle setting for personal testing: deployed jobs get a `[dev <you>]` name prefix and schedules are paused, so your experiments never collide with the real thing.
+
+**Idempotent** — safe to run again: the second run changes nothing (`CREATE ... IF NOT EXISTS` is the classic example).

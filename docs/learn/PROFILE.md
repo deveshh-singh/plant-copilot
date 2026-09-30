@@ -32,6 +32,8 @@ review = mastered: move it to the "Mastered:" line. -->
 | Keeping file line order outside Spark (`line_no` from the reader) | 1 | 2026-09-30 | 2026-10-02 | D-012 |
 | Idempotent, cached data pulls (rerun = no-op; `.part` file then rename) | 1 | 2026-09-30 | 2026-10-02 | T-003 |
 | Checksums (sha256) and a manifest to prove which data you used | 1 | 2026-09-30 | 2026-10-02 | T-003 |
+| Bundle development mode (name prefixes; why schemas are made by a notebook) | 1 | 2026-09-30 | 2026-10-02 | D-013, T-002 |
+| Idempotent setup jobs (`IF NOT EXISTS`, safe rerun) | 1 | 2026-09-30 | 2026-10-02 | T-002 |
 
 ## Graduation checklist
 <!-- Ticked by /learn check only when the owner SHOWS it. The ten items are in

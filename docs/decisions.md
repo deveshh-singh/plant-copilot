@@ -61,3 +61,10 @@ text (plain `open()` on `/Volumes/...`) and calls `lines_frame`. **Why:** Spark 
 file order, and serverless has no RDD API (`zipWithIndex`); the files are small (~265k lines).
 Bad input (unknown file name, a line without 26 fields) fails the query with `raise_error`.
 **By:** Claude (builder, T-004), accepted at review.
+
+## D-013 · 2026-09-30 · Schemas and volumes are created by the setup notebook, not bundle resources
+**Decided:** `notebooks/00_setup.py` (job `setup`) creates `workspace.plant_bronze`,
+`workspace.plant_silver` and `workspace.plant_bronze.raw` with `IF NOT EXISTS`. The bundle declares
+jobs only. **Why:** in `mode: development` a bundle prefixes the names of schemas and volumes it
+owns (`dev_<user>_plant_bronze`), which would break the fixed names in D-008 and
+`fetch_cmapss.py`. **By:** Claude (builder, T-002), accepted at review.
