@@ -2,8 +2,8 @@
 id: T-008
 title: Guard RUL unit numbering against blank lines mid-file
 type: bug
-status: triage
-priority: P2
+status: backlog
+priority: P1
 milestone: M1
 owner: Claude
 branch:
