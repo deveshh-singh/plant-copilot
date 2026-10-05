@@ -8,14 +8,16 @@ rules are imported on the next line and updated from the master. -->
 
 ## This project
 A multi-agent assistant for industrial maintenance data, and Devesh's personal
-learning project (started Sep 2026) for Databricks, PySpark, Text2SQL, LangGraph,
-DSPy, LoRA fine-tuning, scikit-learn and MLflow evaluation. A LangGraph supervisor
+learning project (started Sep 2026) for SQL, Databricks, PySpark, Text2SQL,
+LangGraph, MLflow evaluation, Docker and one public cloud; later DSPy, LoRA
+fine-tuning and scikit-learn. A LangGraph supervisor
 routes questions to a Text2SQL agent (Delta tables of NASA C-MAPSS sensor data), a
 RAG agent (maintenance documents) and a scikit-learn remaining-life model tool.
 Built on Databricks Free Edition (serverless) plus a local Mac mini M4 for
 fine-tuning. Layout: `notebooks/` (Databricks source-format `.py`), `agents/`,
 `eval/`, `finetune/`, `app/` (Databricks App), `data/raw/` (gitignored).
-Milestones M0–M9 are in `README.md`; measured results go in `PROGRESS.md`.
+Milestones M0–M9 (core) and L1–L4 (later) are in `README.md` (D-014); measured
+results go in `PROGRESS.md`.
 
 Two Claude accounts work on this project: one manages on `main` (plans, cards,
 board, review, merge), the other builds single cards in a separate worktree. The

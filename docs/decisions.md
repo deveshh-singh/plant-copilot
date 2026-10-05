@@ -68,3 +68,12 @@ Bad input (unknown file name, a line without 26 fields) fails the query with `ra
 jobs only. **Why:** in `mode: development` a bundle prefixes the names of schemas and volumes it
 owns (`dev_<user>_plant_bronze`), which would break the fixed names in D-008 and
 `fetch_cmapss.py`. **By:** Claude (builder, T-002), accepted at review.
+
+## D-014 · 2026-10-05 · Milestones re-planned: foundations first, advanced work later
+**Decided:** core path M0 Setup, M1 Data, M2 SQL gold set (hand-written), M3 Text2SQL agent in
+LangGraph, M4 RAG agent, M5 supervisor, M6 MLflow evaluation, M7 Docker, M8 cloud deploy (AWS
+first choice, free tier; anything paid needs the owner's OK under rule 3), M9 ship. The old
+M2 ML model, M7 DSPy, M8 LoRA fine-tune and the Databricks App front end are kept as Later
+items L1–L4, not dropped. M0 and M1 and their cards are unchanged. **Why:** the project now
+closes the owner's foundation gaps (SQL, LangGraph, Docker, a public cloud) and should ship a
+finished, demonstrable project in about 8 weeks rather than ten advanced milestones. **By:** owner.

@@ -41,6 +41,7 @@ The full reasoning lives there, not here. -->
 - D-011 — manager = `claude-jo` on `main`; builder = `claude-dev`, given cards with `/assign T-NNN`
 - D-012 — RUL line order from Python `lines_frame`, never Spark row order
 - D-013 — schemas/volume made by `00_setup.py`, not bundle resources (dev mode prefixes names)
+- D-014 — milestones: M2 SQL gold set … M7 Docker, M8 cloud, M9 ship; old M2/M7/M8 are Later L1–L4
 
 ## Waiting on the owner
 <!-- Things only the owner can do: accounts, access, decisions, manual checks. -->
